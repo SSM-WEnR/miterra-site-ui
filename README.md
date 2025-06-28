@@ -79,7 +79,7 @@ This command installs the dependencies listed in `package.json` into the `node_m
 You can make changes freely to the UI project to make it suits your specific needs. All relevant files are located under the `src/` folder.
 
 - `css/` contains all CSS files for the site.
-- `font/` contains all font files used in the site. These font files are provided as a failsafe, as the site will first try to load fonts from CDN services, and will fall back to these fonts if they fail to load.
+- `font/` contains all font files used in the site. These font files are provided as a failsafe, as the site will first try to load fonts from CDN services, and will only fall back to these local copies if the online version fail to load.
 - `helpers/` contains all JavaScript files that are used to extend the Handlebars template engine.
 -  `img/` contains all images used in the site.
 -  `js/` contains all JavaScript files used in the site.
