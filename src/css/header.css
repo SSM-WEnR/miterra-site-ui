@@ -394,6 +394,10 @@ div.navbar-link {
     display: none;
   }
 
+  form input[type="checkbox"] {
+    margin-right: 0.25em;
+  }
+
   #search-field.has-filter > input {
     border-right: none;
     border-radius: 0.25em 0 0 0.25em;
