@@ -1396,7 +1396,7 @@
 
 .doc kbd {
   display: inline-block;
-  font-size: calc(12 / var(--rem-base) * 1rem);
+  font-size: calc(14 / var(--rem-base) * 1rem);
   background: var(--kbd-background);
   border: 1px solid var(--kbd-border-color);
   border-radius: 0.25em;
@@ -1435,6 +1435,16 @@
 .doc .menuseq i.caret {
   background-image: url(../img/octicons-16.svg#view-chevron-right);
   margin: 0 -0.25em;
+}
+
+.doc .menuseq i.fa {
+  height: 1em;
+  width: 1em;
+  vertical-align: -0.125em;
+}
+
+.doc .menuseq i.fa-angle-right::before {
+  content: "";
 }
 
 .doc .tag {
