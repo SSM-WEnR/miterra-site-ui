@@ -585,6 +585,11 @@
   border: var(--important-color) var(--admonition-border);
 }
 
+.doc div.admonitionblock.debug table .content {
+  background: var(--debug-color-background);
+  border: var(--debug-color) var(--admonition-border);
+}
+
 .doc .admonitionblock td.icon {
   font-size: calc(15 / var(--rem-base) * 1rem);
   left: 0;
