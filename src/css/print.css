@@ -1,6 +1,7 @@
 @page {
   size: A4;
-  margin: 1.25cm;
+  margin: 1.5cm 1.2cm 1.5cm 1.2cm;
+  padding: 0;
 }
 
 @media print {
@@ -16,19 +17,25 @@
     font-size: var(--body-font-size--print);
   }
 
+  /*
   a {
     color: inherit !important;
     text-decoration: underline;
-  }
-
-  a.plain {
-    text-decoration: none;
   }
 
   a.bare,
   a[href^="#"],
   a[href^="mailto:"] {
     text-decoration: none;
+  }
+
+  a.plain {
+    text-decoration: none;
+  }
+  */
+
+  div#toc ul a {
+    color: inherit !important;
   }
 
   tr,
@@ -77,12 +84,44 @@
     padding-bottom: 2rem;
   }
 
+  /*
   .doc * {
     box-shadow: none !important;
+  }
+  */
+
+  h1 {
+    font-size: 1.75em !important;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.9em;
+    font-style: italic;
+  }
+
+  h6 {
+    font-size: 0.9em;
+    font-style: italic;
   }
 
   .doc h1.sect0 {
     break-before: page;
+  }
+
+  .doc .exampleblock .title {
+    break-after: avoid;
   }
 
   .doc .admonitionblock td.icon {
@@ -95,6 +134,16 @@
 
   .doc .listingblock code[data-lang]::before {
     display: block;
+  }
+
+  .doc p {
+    widows: 2;
+    orphans: 2;
+  }
+
+  .doc code span.line {
+    widows: 2;
+    orphans: 2;
   }
 
   footer.footer {
@@ -113,3 +162,4 @@
     color: inherit;
   }
 }
+

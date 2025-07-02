@@ -33,7 +33,7 @@
   /* fonts */
   --body-font-size: 1.0625em; /* 17px */
   --body-font-size--desktop: 1.125em; /* 18px */
-  --body-font-size--print: 0.9375em; /* 15px */
+  --body-font-size--print: 0.875em; /* 14px */
   --body-line-height: 1.15;
   --body-font-color: var(--color-jet-80);
   --body-font-family: "Noto Sans", "Source Han Sans", "思源黑体", sans-serif;
@@ -106,7 +106,7 @@
   --warning-on-color: var(--color-white);
   --admonition-background: var(--panel-background);
   /*--admonition-background: #ecffec;*/
-  --admonition-border: 0px solid;
+  --admonition-border: 1px solid;
   --admonition-label-font-weight: var(--body-font-weight-bold);
   /* doc */
   /*

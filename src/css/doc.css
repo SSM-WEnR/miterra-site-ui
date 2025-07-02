@@ -104,7 +104,7 @@
   margin: 1.5rem -1rem 0;
   padding: 0.5rem 1rem;
   border-bottom: 0.15em solid;
-  border-radius: 0.2em 0.2em 0 0;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .doc h2:not(.discrete) {
@@ -133,6 +133,12 @@
   font-size: 0.8em;
   font-weight: normal;
   padding-top: 0.25em;
+  font-style: normal;
+}
+
+.doc h5 .anchor,
+.doc h6 .anchor {
+  margin-left: -3ex;
 }
 
 .doc h1 .anchor::before,
@@ -159,8 +165,12 @@
   margin: 0;
 }
 
-.doc p{
+.doc p {
   font-family: var(--text-font-family), serif;
+}
+
+.doc p:empty {
+  padding-bottom: 1px;
 }
 
 .doc a {
@@ -269,7 +279,7 @@
 .doc .colist > table code {
   color: var(--code-font-color);
   background: var(--code-background);
-  border-radius: 0.25em;
+  border-radius: var(--border-radius);
   font-size: 0.95em;
   padding: 0.125em 0.25em;
 }
@@ -401,15 +411,6 @@
   background: var(--table-background);
   font-family: var(--text-font-family), serif;
   font-size: calc(15 / var(--rem-base) * 1rem);
-}
-
-.doc table.tableblock {
-  box-shadow: var(--box-shadow);
-}
-
-.doc .exampleblock table.tableblock,
-.doc .sidebarblock table.tableblock {
-  box-shadow: none;
 }
 
 .doc p.tableblock + p.tableblock {
@@ -549,43 +550,45 @@
   table-layout: fixed;
   position: relative;
   width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .doc .admonitionblock td.content {
   padding: 1rem 1rem 0.75rem;
   background: var(--admonition-background);
   font-family: var(--text-font-family), serif;
-  border-radius: 0.25rem;
+  border-radius: var(--border-radius);
   width: 100%;
   word-wrap: anywhere;
 }
 
-.doc .admonitionblock.tip table .content {
+.doc .admonitionblock.tip table td.content {
   background: var(--tip-color-background);
   border: var(--tip-color) var(--admonition-border);
 }
 
-.doc .admonitionblock.note table .content {
+.doc .admonitionblock.note table td.content {
   background: var(--note-color-background);
   border: var(--note-color) var(--admonition-border);
 }
 
-.doc .admonitionblock.warning table .content {
+.doc .admonitionblock.warning table td.content {
   background: var(--warning-color-background);
   border: var(--warning-color) var(--admonition-border);
 }
 
-.doc .admonitionblock.caution table .content {
+.doc .admonitionblock.caution table td.content {
   background: var(--caution-color-background);
   border: var(--caution-color) var(--admonition-border);
 }
 
-.doc .admonitionblock.important table .content {
+.doc .admonitionblock.important table td.content {
   background: var(--important-color-background);
   border: var(--important-color) var(--admonition-border);
 }
 
-.doc div.admonitionblock.debug table .content {
+.doc div.admonitionblock.debug table td.content {
   background: var(--debug-color-background);
   border: var(--debug-color) var(--admonition-border);
 }
@@ -597,7 +600,7 @@
   padding: 0;
   position: absolute;
   top: 0;
-  transform: translate(-0.5rem, -50%);
+  transform: translate(-0.8rem, -45%);
 }
 
 .doc .admonitionblock td.icon i {
@@ -606,7 +609,7 @@
   border-radius: 0.5em;
   display: inline-flex;
   filter: initial;
-  height: 1.5em;
+  height: 1.75em;
   padding: 0 0.5em;
   vertical-align: initial;
   width: fit-content;
@@ -615,7 +618,7 @@
 .doc .admonitionblock td.icon i::before {
   background: no-repeat 0.05em center / 1em 1em;
   content: "";
-  filter: invert(100%);
+  /*filter: invert(100%);*/
   height: inherit;
   width: 1.5em;
 }
@@ -636,7 +639,7 @@
 }
 
 .doc .admonitionblock.tip.seealso td.icon i.icon-tip::before {
-  background-image: url(../img/octicons-16.svg#view-seealso);
+  background-image: url(../img/icon-seealso.svg);
 }
 
 .doc .admonitionblock.tip.explain td.icon i::after {
@@ -644,7 +647,7 @@
 }
 
 .doc .admonitionblock.tip.explain td.icon i.icon-tip::before {
-  background-image: url(../img/octicons-16.svg#view-explain);
+  background-image: url(../img/icon-explain.svg);
 }
 
 .doc .admonitionblock.note.keynote td.icon i::after {
@@ -652,7 +655,7 @@
 }
 
 .doc .admonitionblock.note.keynote td.icon i.icon-note::before {
-  background-image: url(../img/octicons-16.svg#view-zap);
+  background-image: url(../img/icon-zap.svg);
 }
 
 .doc .admonitionblock.note.alt td.icon i::after {
@@ -660,7 +663,7 @@
 }
 
 .doc .admonitionblock.note.alt td.icon i.icon-note::before {
-  background-image: url(../img/octicons-16.svg#view-alt);
+  background-image: url(../img/icon-alt.svg);
 }
 
 .doc .admonitionblock.caution.experimental td.icon i::after {
@@ -668,7 +671,7 @@
 }
 
 .doc .admonitionblock.caution.experimental td.icon i.icon-caution::before {
-  background-image: url(../img/octicons-16.svg#view-experimental);
+  background-image: url(../img/icon-experimental.svg);
 }
 
 .doc .admonitionblock.caution.notimplemented td.icon i::after {
@@ -676,7 +679,7 @@
 }
 
 .doc .admonitionblock.caution.notimplemented td.icon i.icon-caution::before {
-  background-image: url(../img/octicons-16.svg#view-notimplemented);
+  background-image: url(../img/icon-notimplemented.svg);
 }
 
 .doc .admonitionblock.warning.attention td.icon i::after {
@@ -684,7 +687,7 @@
 }
 
 .doc .admonitionblock.warning.attention td.icon i.icon-warning::before {
-  background-image: url(../img/octicons-16.svg#view-megaphone);
+  background-image: url(../img/icon-megaphone.svg);
 }
 
 .doc .admonitionblock.warning.obsolete td.icon i::after {
@@ -692,7 +695,7 @@
 }
 
 .doc .admonitionblock.warning.obsolete td.icon i.icon-warning::before {
-  background-image: url(../img/octicons-16.svg#view-obsolete);
+  background-image: url(../img/icon-obsolete.svg);
 }
 
 .doc .admonitionblock.important.error td.icon i::after {
@@ -700,7 +703,7 @@
 }
 
 .doc .admonitionblock.important.error td.icon i.icon-important::before {
-  background-image: url(../img/octicons-16.svg#view-error);
+  background-image: url(../img/icon-error.svg);
 }
 
 .doc .admonitionblock.important.deprecated td.icon i::after {
@@ -708,7 +711,7 @@
 }
 
 .doc .admonitionblock.important.deprecated td.icon i.icon-important::before {
-  background-image: url(../img/octicons-16.svg#view-deprecated);
+  background-image: url(../img/icon-deprecated.svg);
 }
 
 .doc .admonitionblock.debug table td.icon i.fa::after {
@@ -716,7 +719,7 @@
 }
 
 .doc div.admonitionblock.debug table td.icon i.fa::before {
-  background-image: url(../img/octicons-16.svg#view-debug);
+  background-image: url(../img/icon-debug.svg);
 }
 
 .doc div.admonitionblock.debug table td.icon i.fa {
@@ -730,7 +733,7 @@
 }
 
 .doc .admonitionblock td.icon i.icon-caution::before {
-  background-image: url(../img/octicons-16.svg#view-flame);
+  background-image: url(../img/icon-flame.svg);
 }
 
 .doc .admonitionblock td.icon i.icon-caution {
@@ -739,7 +742,7 @@
 }
 
 .doc .admonitionblock td.icon i.icon-important::before {
-  background-image: url(../img/octicons-16.svg#view-stop);
+  background-image: url(../img/icon-stop.svg);
 }
 
 .doc .admonitionblock td.icon i.icon-important {
@@ -748,7 +751,7 @@
 }
 
 .doc .admonitionblock td.icon i.icon-note::before {
-  background-image: url(../img/octicons-16.svg#view-info);
+  background-image: url(../img/icon-info.svg);
 }
 
 .doc .admonitionblock td.icon i.icon-note {
@@ -757,7 +760,7 @@
 }
 
 .doc .admonitionblock td.icon i.icon-tip::before {
-  background-image: url(../img/octicons-16.svg#view-light-bulb);
+  background-image: url(../img/icon-tip.svg);
 }
 
 .doc .admonitionblock td.icon i.icon-tip {
@@ -766,7 +769,7 @@
 }
 
 .doc .admonitionblock td.icon i.icon-warning::before {
-  background-image: url(../img/octicons-16.svg#view-alert);
+  background-image: url(../img/icon-alert.svg);
 }
 
 .doc .admonitionblock td.icon i.icon-warning {
@@ -1067,14 +1070,14 @@
   transform: translateY(15%);
 }
 
-.doc details > summary::after {
-  content: "";
-  width: 1rem;
-  height: 1em;
-  position: absolute;
-  top: calc((var(--doc-line-height) * 0.5 - 0.5) * 1em);
-  left: -1rem;
-}
+/*.doc details > summary::after {*/
+/*  content: "";*/
+/*  width: 1rem;*/
+/*  height: 1em;*/
+/*  position: absolute;*/
+/*  top: calc((var(--doc-line-height) * 0.5 - 0.5) * 1em);*/
+/*  left: -1rem;*/
+/*}*/
 
 .doc details.result {
   margin-top: 0.25rem;
@@ -1179,14 +1182,17 @@
   margin-top: 0;
 }
 
+.doc pre:has(> code) {
+  background: var(--pre-background);
+}
+
 .doc pre > code,
 .doc .listingblock pre:not(.highlight),
 .doc .literalblock pre {
   background: var(--pre-background);
-  /*box-shadow: inset 0 0 1.75px var(--pre-border-color);*/
   display: block;
   overflow-x: auto;
-  padding: 0.875em;
+  padding: 1em;
 }
 
 /* NEEDS REVIEW prevent pre in table from causing article to exceed bounds */
@@ -1381,7 +1387,7 @@
 
 .doc hr {
   border: solid var(--section-divider-color);
-  border-width: 2px 0 0;
+  border-width: 1px 0 0;
   height: 0;
 }
 
