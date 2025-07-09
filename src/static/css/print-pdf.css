@@ -1,0 +1,130 @@
+@page {
+  font-family: var(--text-font-family), serif;
+  font-size: 0.8em;
+  border-bottom: 2px var(--color-wur-primary-2) solid;
+
+  @top-right {
+    content: string(chapter-title);
+    font-style: italic;
+    vertical-align: bottom;
+  }
+
+  @bottom-left {
+    content: string(doc-name);
+    vertical-align: top;
+    margin-top: 0.5em;
+  }
+
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    vertical-align: top;
+    margin-top: 0.5em;
+  }
+}
+
+@page:first-of-group {
+  @top-right {
+    content: normal;
+  }
+}
+
+@media print {
+  html {
+    font-size: 0.8em !important;
+  }
+
+  .doc {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .doc #preamble #cover-image {
+    margin-left: -4.5em;
+    margin-top: 8.5em;
+  }
+
+  .doc #preamble #cover-image img {
+    max-width: 108%;
+  }
+
+  .doc #preamble #wur-logo {
+    position: absolute;
+    bottom: 2.5em;
+    right: 0;
+    margin: 0;
+  }
+
+  .doc #toctitle {
+    margin-top: 0 !important;
+  }
+
+  .doc h1.sect0 {
+    margin-top: -0.5em !important;
+  }
+
+  div#toc ul.sectlevel0 {
+    font-family: var(--text-font-family), serif;
+    line-height: 1.8;
+    padding-left: 0;
+  }
+
+  div#toc ul li::marker {
+    content: "";
+  }
+
+  div#toc a::after {
+    content: leader(".") target-counter(attr(href), page);
+  }
+
+  .doc .part-image {
+    position: fixed;
+    left: 50%;
+    bottom: 20%;
+    transform: translateX(-50%);
+  }
+}
+
+h1.sect0 {
+  string-set: chapter-title content();
+  -prince-page-group: start;
+}
+
+.doc div.book-part {
+  -prince-page-group: start;
+  break-before: page;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--tip-color-background);
+  border: 0.25em solid var(--color-wur-primary-2);
+  border-radius: var(--border-radius);
+  padding: 3em 0;
+  margin: 10em 0 10em 0;
+}
+
+.doc div.book-part .part-num {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: var(--heading-font-family) sans-serif;
+  color: var(--color-wur-primary-2);
+}
+
+.doc div.book-part .part-title {
+  text-align: center;
+  font-size: 2em;
+  font-family: var(--heading-font-family) sans-serif;
+  font-weight: var(--body-font-weight-bold);
+  color: var(--color-wur-primary-2);
+  text-transform: uppercase;
+}
+
+.doc div.book-part:has(.part-num) .part-title {
+  border-top: 0.1rem solid var(--color-wur-primary-2);
+  width: fit-content;
+  margin-top: 0.5em;
+  padding: 0 0.2em 0 0.2em;
+}
+
+span#footer-doc-name {
+  string-set: doc-name content();
+}
