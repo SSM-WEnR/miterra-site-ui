@@ -196,7 +196,7 @@
 }
 
 .doc a.plain {
-  color: var(--body-font-color);
+  color: var(--doc-font-color);
 }
 
 .doc a.plain:hover,
@@ -276,6 +276,20 @@
 
 .doc span.clipicon:hover {
   filter: invert(25%);
+}
+
+.doc span.unit {
+  color: var(--doc-font-color);
+}
+
+.doc span.unit::before {
+  font-family: var(--symbol-font-family), sans-serif;
+  content: "\1F184  ";
+  color: var(--color-gray-15);
+}
+
+.doc span.unit::after {
+  content: "";
 }
 
 .doc p code,

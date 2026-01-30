@@ -41,6 +41,7 @@
   --body-font-weight-bold: 600;
   --monospace-font-family: "Cascadia Code", monospace;
   --monospace-font-weight-bold: 600;
+  --symbol-font-family: "Noto Sans Symbols", "Noto Sans Symbols 2", sans-serif;
   /* base */
   --body-background: var(--color-white);
   --panel-background: var(--color-smoke-50);
