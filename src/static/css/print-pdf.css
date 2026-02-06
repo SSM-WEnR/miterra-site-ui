@@ -44,12 +44,12 @@
   }
 
   .doc #preamble #cover-image {
-    margin-left: -4.5em;
+    margin-left: -4.75em;
     margin-top: 8.5em;
   }
 
   .doc #preamble #cover-image img {
-    max-width: 108%;
+    max-width: 110%;
   }
 
   .doc #preamble #wur-logo {
