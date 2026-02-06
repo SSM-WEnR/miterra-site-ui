@@ -409,6 +409,22 @@
   margin-top: 1.5rem;
 }
 
+/* When an admonition black is placed under a hdlist within an exampleblock,
+the admonition block sometimes exceeds the width of the hdlist when converting to PDF.
+The following lines fix this. */
+.doc .hdlist > table {
+  table-layout: auto;
+  width: 100%;
+}
+
+.doc .hdlist > table td.hdlist1 {
+  width: max-content;
+}
+
+.doc .hdlist > table td.hdlist2 {
+  width: 100%;
+}
+
 .doc .hdlist .hdlist2 table {
   margin-top: 0.5rem;
 }
@@ -566,7 +582,7 @@
 }
 
 .doc .admonitionblock > table {
-  table-layout: fixed;
+  table-layout: auto;  /*Changed from fixed*/
   position: relative;
   width: 100%;
   border-collapse: separate;
