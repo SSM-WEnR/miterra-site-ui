@@ -280,10 +280,12 @@
 
 .doc span.unit {
   color: var(--doc-font-color);
+  font-style: normal;
 }
 
 .doc span.unit::before {
   font-family: var(--symbol-font-family), sans-serif;
+  font-style: normal;
   content: "\1F184  ";
   color: var(--color-gray-15);
 }
@@ -715,6 +717,14 @@ The following lines fix this. */
 
 .doc .admonitionblock.caution.notimplemented td.icon i.icon-caution::before {
   background-image: url(../img/icon-notimplemented.svg);
+}
+
+.doc .admonitionblock.caution.progress td.icon i::after {
+  content: "In Progress";
+}
+
+.doc .admonitionblock.caution.progress td.icon i.icon-caution::before {
+  background-image: url(../img/icon-play.svg);
 }
 
 .doc .admonitionblock.warning.attention td.icon i::after {
