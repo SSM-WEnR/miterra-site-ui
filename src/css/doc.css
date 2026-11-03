@@ -722,11 +722,9 @@ The following lines fix this. */
 .doc .admonitionblock.caution.progress td.icon i::after {
   content: "In Progress";
 }
-
 .doc .admonitionblock.caution.progress td.icon i.icon-caution::before {
   background-image: url(../img/icon-play.svg);
 }
-
 .doc .admonitionblock.warning.attention td.icon i::after {
   content: "Attention";
 }

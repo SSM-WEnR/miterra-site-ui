@@ -1,13 +1,13 @@
+/*
+When converting the page to PDF, chapter pages are imported into the main page with an offset applied on heading levels.
+This causes the heading level to increase by 1, i.e. h1 -> h2, h2 -> h3, and so on.
+Therefore in this CSS, we must adjust the styles applied to the headings, so the style originally for H1 must now be applied on H2, and so on.
+*/
+
 @page {
   font-family: var(--text-font-family), serif;
   font-size: 0.8em;
   border-bottom: 2px var(--color-wur-primary-2) solid;
-
-  @top-right {
-    content: string(chapter-title);
-    font-style: italic;
-    vertical-align: bottom;
-  }
 
   @bottom-left {
     content: string(doc-name);
@@ -24,9 +24,16 @@
   }
 }
 
-@page:first-of-group {
+@page chapter {
+  @top-left {
+    content: string(part-title);
+    font-style: italic;
+    vertical-align: bottom;
+  }
   @top-right {
-    content: normal;
+    content: string(chapter-title);
+    font-style: italic;
+    vertical-align: bottom;
   }
 }
 
@@ -38,9 +45,96 @@
     font-size: 0.8em !important;
   }
 
+  div#toc ul {
+    font-family: var(--text-font-family), serif;
+    line-height: 1.8;
+  }
+
+  div#toc ul li::marker {
+    content: "";
+  }
+
+  div#toc a::after {
+    content: leader(".") target-counter(attr(href), page);
+  }
+
+  div#toc ul.sectlevel0 {
+    padding-left: 0;
+  }
+
+  div#toc ul.sectlevel0 > li:not(:first-child) {
+    margin-top: 1em;
+  }
+
+  div#toc ul.sectlevel0 > li > a {
+    font-weight: bold;
+    margin-top: 5em;
+  }
+
+  div#toc ul.sectlevel0 > li > a::after {
+    content: "";
+  }
+
+  div#toc ul.sectlevel1 {
+    font-weight: normal;
+    padding-left: 0;
+  }
+
+  /* Start a new page for each chapter */
+  div.sect1 {
+    page: chapter;
+    break-before: page !important;
+    -prince-page-group: start;
+    margin-top: 2em !important;
+  }
+
   .doc {
     padding-top: 0 !important;
     margin-top: 0 !important;
+  }
+
+  /* H1 is now the book title and part title. We want to hide the part title since it will be displayed using inline HTML. */
+  .doc h1:not(.page) {
+    string-set: part-title content();
+    -prince-page-group: start;
+    break-before: page;
+    break-after: avoid !important;
+    /* Hide the element */
+    background: none;
+    font-size: 0 !important;
+    padding: 0;
+  }
+
+  .doc h2 {
+    string-set: chapter-title content();
+    background: var(--tip-color-background);
+    font-size: 1.75em;
+    margin: 0 -1rem 0;
+    padding: 0.5rem 1rem;
+    border-bottom: 0.15em solid;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+
+  .doc h3 {
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--section-divider-color);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 0.4rem 1rem 0.1rem;
+  }
+
+  .doc h4 {
+    font-size: 1.25em;
+  }
+
+  .doc h5 {
+    font-size: 1em;
+    font-style: italic;
+  }
+
+  .doc h6 {
+    font-size: 0.9em;
+    font-style: italic;
   }
 
   .doc #preamble #cover-image {
@@ -54,7 +148,7 @@
 
   .doc #preamble #wur-logo {
     position: absolute;
-    bottom: 2.5em;
+    bottom: 2.0em;
     right: 0;
     margin: 0;
   }
@@ -63,39 +157,11 @@
     margin-top: 0 !important;
   }
 
-  .doc h1.sect0 {
-    margin-top: -0.5em !important;
-  }
-
-  div#toc ul.sectlevel0 {
-    font-family: var(--text-font-family), serif;
-    line-height: 1.8;
-    padding-left: 0;
-  }
-
-  div#toc ul li::marker {
-    content: "";
-  }
-
-  div#toc a::after {
-    content: leader(".") target-counter(attr(href), page);
-  }
-
   .doc .part-image {
     position: fixed;
     left: 50%;
     bottom: 20%;
     transform: translateX(-50%);
-  }
-
-  h1.sect0 {
-    string-set: chapter-title content();
-    -prince-page-group: start;
-  }
-
-  .doc div.book-part {
-    -prince-page-group: start;
-    break-before: page;
   }
 
   footer.footer {
