@@ -64,7 +64,7 @@ jobs:
       id: generate_iat
       uses: actions/create-github-app-token@v3
       with:
-        client-id: ${{ secrets.BOT_APP_ID }}
+        client-id: ${{ secrets.BOT_CLIENT_ID }}
         private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
         owner: ${{ github.repository_owner }}
 
